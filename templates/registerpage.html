@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleregister.css') }}">
+</head>
+
+<body>
+
+    <!-- BACKGROUND EFFECT -->
+    <div class="stars"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+
+    <!-- FORM CONTAINER -->
+    <div class="container">
+        <h2 style="text-align:center;">REGISTER</h2>
+
+        <form action="/signup" method="POST">
+
+            <label>Username</label>
+            <input type="text" name="username" required placeholder="Username">
+
+            <label>Email</label>
+            <input type="email" name="email" required placeholder="Email">
+
+            <label>Password</label>
+            <input type="password" name="password" required placeholder="Password">
+
+            <button class="btn">Register</button>
+        </form>
+
+        <p style="text-align:center; margin-top:10px;">
+            Have an account? 
+            <a href="/login" style="color:#b57dff;">Login here</a>
+        </p>
+    </div>
+
+</body>
+</html>

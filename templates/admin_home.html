@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleadmin.css') }}">
+</head>
+
+<body>
+
+    <!-- BACKGROUND STARS -->
+    <div class="stars"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+
+    <!-- CENTERED WRAPPER -->
+    <div class="center-wrapper">
+
+        <h1 style="color:white;">Admin Dashboard</h1>
+        <p style="color:white;">Welcome, Admin!</p>
+
+        <div class="table-box" style="margin-top:40px;">
+
+            <h3 style="color:white; text-align:center; margin-bottom:15px;">
+                Attendance Records
+            </h3>
+
+            <!-- <a href="/download_csv" class="action-btn">CSV File</a> -->
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Clock In</th>
+                    <th>Clock Out</th>
+                    <th>Action</th>
+                    <th>
+            <a href="/download_csv" class="action-btn">CSV File</a>
+        </th>
+                </tr>
+
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.username }}</td>
+                    <td>{{ row.clock_in }}</td>
+                    <td>{{ row.clock_out }}</td>
+                    <td>
+                        <form method="POST" action="/delete/{{ row.id }}">
+                            <button type="submit"
+                                    style="background:red; color:white; border:none; padding:5px 45px; cursor:pointer; 
+                                    display:flex; justify-content:center; align-items:center; font-weight:bold;">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div> 
+
+    </div> 
+
+</body>
+</html>

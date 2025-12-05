@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylestudent.css') }}">
+</head>
+
+<body>
+
+    <!-- BACKGROUND ELEMENTS -->
+    <div class="stars"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+
+    <!-- TITLE -->
+    <h2 style="text-align:center; color:white;">
+        Welcome, {{ username }}!
+    </h2>
+
+    <!-- CLOCK -->
+    <h3 id="currentTime" style="color:white; text-align:center; margin-bottom:15px;"></h3>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleString('en-GB', { hour12: false });
+            document.getElementById("currentTime").innerHTML = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
+    <!-- TABLE + BUTTON WRAPPER -->
+    <div class="table-box" style="margin-top:30px;">
+
+        <h3 style="color:white; text-align:center; margin-bottom:15px;">
+            Your Attendance Record
+        </h3>
+
+        <!-- TABLE -->
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Clock In</th>
+                <th>Clock Out</th>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td>{{ row.username }}</td>
+                <td>{{ row.clock_in }}</td>
+                <td>{{ row.clock_out }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- BUTTON GROUP -->
+        <div class="btn-center">
+
+            <!-- CLOCK IN -->
+            <form action="/clockin" method="POST">
+                <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+                <button class="action-btn">Clock In</button>
+            </form>
+
+            <!-- CLOCK OUT -->
+            <form action="/clockout" method="POST">
+                <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+                <button class="action-btn">Clock Out</button>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

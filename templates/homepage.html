@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+<h2 style="text-align:center;">Welcome, {{ username }}</h2>
+
+<div style="display:flex; justify-content:center; margin-top:30px;">
+    <table border="1" cellpadding="8" style="border-collapse: collapse; text-align:center;">
+        <tr>
+            <th>ID</th>
+            <th>Clock In</th>
+            <th>Clock Out</th>
+        </tr>
+
+        {% for row in data %}
+        <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.clock_in }}</td>
+            <td>{{ row.clock_out }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
